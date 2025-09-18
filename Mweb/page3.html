@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrix Simulation</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        overflow: hidden;
+        font-family: monospace;
+        color: #0f0;
+    }
+    #matrixCanvas {
+        display: block;
+    }
+    .backButton {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #0f0;
+        border: 2px solid #0f0;
+        background: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        z-index: 10;
+    }
+    .backButton:hover {
+        background: #0f0;
+        color: black;
+        transform: scale(1.05);
+        box-shadow: 0 0 10px #0f0;
+    }
+</style>
+</head>
+<body>
+<canvas id="matrixCanvas"></canvas>
+<button class="backButton" onclick="window.location.href='http://127.0.0.1:5500/Mweb/hack.html'">Back to Dashboard</button>
+<script>
+const canvas = document.getElementById('matrixCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const cols = canvas.width / 20;
+const ypos = Array(Math.floor(cols)).fill(0);
+function matrix(){
+    ctx.fillStyle='rgba(0,0,0,0.05)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#0f0';
+    ctx.font='20px monospace';
+    ypos.forEach((y,i)=>{
+        const text = String.fromCharCode(33+Math.random()*94);
+        ctx.fillText(text,i*20,y);
+        if(y>canvas.height+Math.random()*10000)ypos[i]=0;
+        else ypos[i]+=20;
+    });
+}
+setInterval(matrix,50);
+</script>
+</body>
+</html>

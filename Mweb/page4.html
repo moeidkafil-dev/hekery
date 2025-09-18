@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch Sequence</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0a0a0a;
+        color: #ff3300;
+        font-family: 'VT323', monospace;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    h1 {
+        font-size: 36px;
+        margin-bottom: 30px;
+        text-shadow: 0 0 10px #ff3300, 0 0 20px #ff3300;
+    }
+    #countdown {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+    .button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: 2px solid #ff3300;
+        color: #ff3300;
+        background: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+    .button:hover {
+        background: #ff3300;
+        color: black;
+        transform: scale(1.05);
+        box-shadow: 0 0 10px #ff3300;
+    }
+</style>
+</head>
+<body>
+<h1>Launch Sequence</h1>
+<div id="countdown">10</div>
+<button class="button" onclick="window.location.href='http://127.0.0.1:5500/Mweb/hack.html'">Back to Dashboard</button>
+<script>
+let time = 10;
+const countdownElem = document.getElementById('countdown');
+const interval = setInterval(()=>{
+    countdownElem.textContent = time;
+    time--;
+    if(time<0){
+        clearInterval(interval);
+        countdownElem.textContent = 'LAUNCHED!';
+        alert('Launch Sequence Complete!');
+    }
+},1000);
+</script>
+</body>
+</html>
